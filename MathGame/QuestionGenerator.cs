@@ -37,8 +37,8 @@ public class QuestionGenerator
                 do
                 {
                     num1 = Random.Shared.Next(0, 101);
-                    num2 = Random.Shared.Next(1, 101);
-                } while (num1 % num2 != 0);
+                    num2 = Random.Shared.Next(2, 10);
+                } while ((num1 % num2 != 0) || num1 == num2);
                 
                 return new Question(num1, num2, operation);
             }

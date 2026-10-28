@@ -4,15 +4,17 @@ public class Game
 {
     private const int cantidadPreguntas = 5;
     private readonly QuestionGenerator genPregunta = new QuestionGenerator();
-    private Question pregunta;
-    private int userResponse;
+
 
     public void Jugar(Operation operation)
     {
         int puntaje = 0;
-
+        
         for (int i = 0; i < cantidadPreguntas; i++)
         { 
+            Question pregunta;
+            int userResponse;
+            
             Console.Clear();
             {
                 switch (operation)
@@ -23,9 +25,8 @@ public class Game
                             
                         Console.Write($"{pregunta.Left} + {pregunta.Right} = ");
                         
-                        userResponse = int.TryParse(Console.ReadLine(), out userResponse) ? userResponse : 0;
 
-                        if (userResponse == pregunta.Answer)
+                        if ((int.TryParse(Console.ReadLine(), out userResponse) && userResponse == pregunta.Answer))
                         {
                             Console.Clear();
                             Console.WriteLine($"Pregunta correcta. Bien hecho!");
@@ -33,8 +34,8 @@ public class Game
                         } 
                         else
                         {
-                            Console.WriteLine("Respuesta incorrecta");
-                            Thread.Sleep(300);
+                            Console.WriteLine($"Respuesta incorrecta, la correcta era {pregunta.Answer}");
+                            Thread.Sleep(500);
                         } 
                         
                         Console.WriteLine("-------------------------------------------------------");
@@ -43,11 +44,81 @@ public class Game
                         Console.ReadKey();
                         break;
                     }
-                    case Operation.Resta:  break;
                     
-                    case Operation.Multiplicacion: break;
+                    case Operation.Resta:
+                    {
+                        pregunta = genPregunta.GenerateQuestion(Operation.Resta);
+                            
+                        Console.Write($"{pregunta.Left} - {pregunta.Right} = ");
+                        
+                        if ((int.TryParse(Console.ReadLine(), out userResponse) && userResponse == pregunta.Answer))
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Pregunta correcta. Bien hecho!");
+                            puntaje++;
+                        } 
+                        else
+                        {
+                            Console.WriteLine($"Respuesta incorrecta, la correcta era {pregunta.Answer}");
+                            Thread.Sleep(500);
+                        } 
+                        
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.WriteLine($"Puntaje: {puntaje}");
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.ReadKey();
+                        break;
+                    }
                     
-                    case Operation.Division: break;
+                    case Operation.Multiplicacion:
+                    {
+                        pregunta = genPregunta.GenerateQuestion(Operation.Multiplicacion);
+                            
+                        Console.Write($"{pregunta.Left} * {pregunta.Right} = ");
+                        
+                        if ((int.TryParse(Console.ReadLine(), out userResponse) && userResponse == pregunta.Answer))
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Pregunta correcta. Bien hecho!");
+                            puntaje++;
+                        } 
+                        else
+                        {
+                            Console.WriteLine($"Respuesta incorrecta, la correcta era {pregunta.Answer}");
+                            Thread.Sleep(500);
+                        } 
+                        
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.WriteLine($"Puntaje: {puntaje}");
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.ReadKey();
+                        break;
+                    }
+                    
+                    case Operation.Division:
+                    {
+                        pregunta = genPregunta.GenerateQuestion(Operation.Division);
+                            
+                        Console.Write($"{pregunta.Left} / {pregunta.Right} = ");
+                        
+                        if ((int.TryParse(Console.ReadLine(), out userResponse) && userResponse == pregunta.Answer))
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"Pregunta correcta. Bien hecho!");
+                            puntaje++;
+                        } 
+                        else
+                        {
+                            Console.WriteLine($"Respuesta incorrecta, la correcta era {pregunta.Answer}");
+                            Thread.Sleep(500);
+                        } 
+                        
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.WriteLine($"Puntaje: {puntaje}");
+                        Console.WriteLine("-------------------------------------------------------");
+                        Console.ReadKey();
+                        break;
+                    }
                     
                     default: throw new ArgumentOutOfRangeException(nameof(operation), operation, null);
                 }

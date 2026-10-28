@@ -2,7 +2,7 @@ namespace MathGame;
 
 public class Menu
 {
-    private Game Juego = new Game();
+    private readonly Game Juego = new Game();
     
     public void MenuOperaciones()
     {
@@ -29,11 +29,23 @@ public class Menu
                     break;
                 }
                 
-                case 2: break;
+                case 2:
+                {
+                    Juego.Jugar(Operation.Resta);
+                    break;
+                }
                 
-                case 3: break;
+                case 3:
+                {
+                    Juego.Jugar(Operation.Multiplicacion);
+                    break;
+                }
                 
-                case 4: break;
+                case 4:
+                {
+                    Juego.Jugar(Operation.Division);
+                    break;
+                }
                 
                 case 5: 
                     Console.WriteLine("Volviendo al menu principal....");
