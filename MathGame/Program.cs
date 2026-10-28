@@ -1,1 +1,5 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using MathGame;
+
+var menu = new Menu();
+
+menu.MostrarMenu();
