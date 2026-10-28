@@ -84,7 +84,30 @@ public class Menu
                             MenuOperaciones();
                             break;
                     
-                        case 2: break; 
+                        case 2:
+                        {
+                            if (Juego.History.Count == 0)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("No hay partidas para mostrar...");
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                foreach (GamePlayed partida in Juego.History)
+                                {
+                                    Console.WriteLine("------------------------------------");
+                                    Console.WriteLine($"Fecha: {partida.Date:M/d/yy}");
+                                    Console.WriteLine($"Operacion: {partida.Operation}");
+                                    Console.WriteLine($"Puntaje: {partida.Score}");
+                                    Console.WriteLine($"Estadistica: {partida.Score}/5");
+                                    Console.WriteLine("------------------------------------");
+                                }
+                            }
+                            Console.WriteLine("Pulsa una tecla para salir...");
+                            Console.ReadKey();
+                            break;
+                        } 
                         
                         case 3:
                             Console.WriteLine("Saliendo...");
